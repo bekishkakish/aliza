@@ -1,0 +1,2181 @@
+/* Interaction and material layer. The chapter compositions and media stay in global.css. */
+:root {
+  --radius-control: 12px;
+  --radius-scene: 18px;
+  --ink-secondary: #bcb6b8;
+  --ink-quiet: #a69da3;
+  --surface-raised: #1a181c;
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  font-optical-sizing: auto;
+}
+button {
+  position: relative;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #e2c5a5;
+  outline-offset: 4px;
+}
+button.is-pressing {
+  filter: brightness(1.12);
+}
+.primary-button,
+.secondary-button,
+.text-button,
+.icon-button,
+.menu-button,
+.compare-button,
+.reset-button,
+.secret-note,
+.hero-frame-toggle button {
+  border-radius: var(--radius-control);
+  transition:
+    color 0.18s,
+    background 0.18s,
+    box-shadow 0.25s,
+    border-color 0.18s;
+}
+.primary-button {
+  border-radius: 13px;
+  min-height: 56px;
+  padding: 0 25px;
+  font-size: 12px;
+  letter-spacing: 0.035em;
+  font-weight: 650;
+  background: linear-gradient(165deg, #b32937, #941b29);
+  box-shadow:
+    inset 0 1px 0 #ffffff14,
+    0 6px 20px #0003;
+}
+.primary-button:hover {
+  background: linear-gradient(165deg, #be3040, #a32130);
+  box-shadow:
+    inset 0 1px 0 #ffffff20,
+    0 9px 26px #0004;
+}
+.primary-button svg {
+  transition: transform 0.28s var(--ease-soft);
+}
+.primary-button:hover svg {
+  transform: translate(2px, -2px);
+}
+.secondary-button {
+  min-height: 48px;
+  padding: 0 18px;
+  font-size: 13px;
+  color: #d7ced2;
+  background: #ffffff06;
+  border: 1px solid transparent;
+  box-shadow: inset 0 1px 0 #ffffff08;
+}
+.secondary-button:hover {
+  background: #ffffff0d;
+  border-color: transparent;
+  color: #fff;
+}
+.text-button {
+  font-size: 13px;
+  gap: 10px;
+  color: var(--ink-secondary);
+  padding: 0 10px;
+}
+.text-button:hover {
+  background: #ffffff05;
+}
+.icon-button {
+  border-radius: 12px;
+}
+.icon-button:hover {
+  background: #ffffff0c;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  line-height: 1.7;
+}
+h1,
+h2 {
+  letter-spacing: -0.04em;
+}
+h2 {
+  line-height: 1.25;
+}
+p {
+  letter-spacing: 0;
+}
+.muted-heading {
+  color: #a0989d;
+}
+.red-tick {
+  border-radius: 2px;
+}
+
+/* Floating chrome has a soft scroll edge, rather than an architectural rule. */
+.site-header {
+  border: 0;
+  background: linear-gradient(#09090bf5, #09090bb8);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 32px #09090b26;
+}
+.brand {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.header-caption {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #bdb3af;
+}
+.header-chapter {
+  font-size: 12px;
+}
+.menu-button {
+  border-left: 0;
+  min-height: 44px;
+  padding: 0 14px;
+  gap: 12px;
+  background: #ffffff05;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.menu-button:hover {
+  background: #ffffff0c;
+}
+.reading-progress {
+  height: 1.5px;
+  opacity: 0.75;
+}
+.cinema-cursor > span {
+  border-color: #d8c0aa45;
+}
+.film-grain {
+  opacity: 0.018;
+}
+
+/* The opening keeps its scale, with calmer tracking and fewer visual rails. */
+.prologue {
+  padding-top: 145px;
+  padding-bottom: 155px;
+  min-height: max(820px, 100svh);
+}
+.prologue h1 {
+  letter-spacing: -0.045em;
+  line-height: 1.26;
+}
+.hero-last {
+  line-height: 1.35;
+}
+.hero-kicker {
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  margin-bottom: 28px;
+}
+.hero-edition {
+  font-size: 10px;
+}
+.hero-description {
+  gap: 18px;
+  margin-top: 25px;
+}
+.hero-description p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #c9bfb7;
+}
+.hero-buttons {
+  margin-top: 28px;
+  gap: 18px;
+}
+.skip-intro {
+  font-size: 12px;
+}
+.scroll-hint {
+  font-size: 10px;
+  letter-spacing: 0.055em;
+  color: #b7ada9;
+}
+.hero-frame-toggle {
+  gap: 10px;
+}
+.hero-frame-toggle button {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 0 10px;
+}
+.hero-frame-toggle button[aria-pressed="true"] {
+  background: #ffffff09;
+}
+.hero-frame-toggle > span {
+  width: 12px;
+  opacity: 0.4;
+}
+.hero-film-label {
+  font-size: 9px;
+  letter-spacing: 0.09em;
+}
+.hero-bottom {
+  margin-top: 38px;
+  margin-bottom: 4px;
+}
+.chapter-strip {
+  border: 0;
+  height: 106px;
+  gap: 28px;
+}
+.chapter-strip button {
+  border: 0;
+  padding: 12px 0;
+  gap: 15px;
+  border-radius: 10px;
+}
+.chapter-strip button:last-child {
+  padding-right: 0;
+}
+.chapter-strip button:hover {
+  background: none;
+}
+.chapter-strip strong {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+.chapter-strip small {
+  font-size: 11px;
+  line-height: 1.55;
+  color: #a99fa6;
+}
+.strip-number {
+  font-size: 20px;
+  font-weight: 300;
+  color: #a79a9f;
+}
+.chapter-strip button > svg {
+  transition: transform 0.3s var(--ease-soft);
+}
+.chapter-strip button:hover > svg {
+  transform: translate(2px, -2px);
+}
+
+/* Chapter rhythm is editorial: spacing and light carry the grouping. */
+.chapter {
+  border-top: 0;
+  padding-top: 82px;
+  padding-bottom: 92px;
+}
+.chapter-label {
+  margin-bottom: 38px;
+  gap: 13px;
+  font-size: 11px;
+  letter-spacing: 0.065em;
+}
+.chapter-label > span:nth-child(2) {
+  color: #a89ca6;
+}
+.label-rule {
+  width: 18px;
+  background: #ffffff1a;
+}
+.section-heading {
+  margin-bottom: 34px;
+  gap: 36px;
+}
+.heading-aside {
+  width: 260px;
+  gap: 22px;
+}
+.heading-aside > p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #bfb3bc;
+}
+.heading-aside > .eyebrow {
+  font-size: 10px;
+}
+.viewfinder {
+  border-radius: var(--radius-scene);
+  box-shadow: 0 18px 60px #0002;
+}
+.finder-corners {
+  opacity: 0.33;
+  inset: 24px;
+}
+.finder-top,
+.finder-bottom {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+.finder-bottom {
+  bottom: 20px;
+}
+.shot-tabs {
+  border: 0;
+  gap: 8px;
+  padding-top: 13px;
+}
+.shot-tabs > button {
+  min-height: 50px;
+  border: 0;
+  padding: 0 14px;
+  border-radius: 11px;
+  font-size: 12px;
+  color: #b8aab6;
+  gap: 10px;
+}
+.shot-tabs > button > span:first-child {
+  font-size: 10px;
+  color: #a89aa5;
+}
+.shot-tabs > button.selected {
+  border-color: transparent;
+  background: #ffffff0a;
+}
+.shot-tabs > button:hover {
+  background: #ffffff07;
+}
+.selection-dot {
+  margin-right: 0;
+}
+.shot-description {
+  padding-top: 8px;
+}
+.shot-description > .eyebrow {
+  font-size: 11px;
+  color: #c1b2b6;
+}
+.shot-description h3 {
+  font-size: 21px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  margin: 17px 0;
+}
+.shot-description p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #b9acb6;
+}
+.shot-description dl {
+  margin-top: 24px;
+}
+.shot-description dl > div {
+  border: 0;
+  padding: 12px 0;
+}
+.shot-description dt {
+  font-size: 10px;
+  color: #ad9fa9;
+  letter-spacing: 0.055em;
+  margin-bottom: 8px;
+}
+.shot-description dd {
+  font-size: 12px;
+  line-height: 1.75;
+}
+.section-footnote {
+  font-size: 11px;
+  line-height: 1.75;
+  color: #ad9faa;
+  max-width: 760px;
+}
+.emotion-heading {
+  margin-bottom: 34px;
+  margin-left: 12%;
+}
+.emotion-heading > .eyebrow {
+  font-size: 10px;
+  margin-bottom: 18px;
+  letter-spacing: 0.075em;
+}
+.emotion-visual {
+  margin-left: 0;
+  border-radius: 20px 52px 20px 20px;
+  aspect-ratio: 1.3;
+}
+.emotion-stage {
+  gap: 50px;
+}
+.emotion-photo-label {
+  font-size: 10px;
+  left: 26px;
+  bottom: 24px;
+  letter-spacing: 0.06em;
+}
+.emotion-index {
+  color: #9b8996;
+  font-size: 40px;
+}
+.emotion-index > span {
+  font-size: 11px;
+}
+.emotion-copy h3 {
+  margin-top: 20px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+.emotion-copy blockquote {
+  font-size: clamp(20px, 1.7vw, 28px);
+  line-height: 1.65;
+  margin-top: 20px;
+}
+.emotion-copy p {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 22px;
+  color: #bdb0ba;
+}
+.technique {
+  border: 0;
+  padding-top: 10px;
+  margin-top: 18px;
+  font-size: 11px;
+  color: #b9a6b2;
+}
+.emotion-selector {
+  border: 0;
+  margin-top: 32px;
+  gap: 8px;
+}
+.emotion-selector > button {
+  min-height: 58px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 12px;
+  font-size: 13px;
+  gap: 14px;
+}
+.emotion-selector > button > span {
+  font-size: 10px;
+}
+.emotion-selector > button.selected {
+  background: #ffffff0a;
+  border-color: transparent;
+}
+.emotion-selector > button:hover {
+  background: #ffffff06;
+}
+.lighting .heading-aside {
+  width: 235px;
+}
+.lighting-view {
+  border-radius: 20px;
+  box-shadow: 0 18px 60px #0002;
+}
+.light-label {
+  font-size: 12px;
+  top: 24px;
+}
+.light-label small {
+  font-size: 10px;
+}
+.lighting-controls {
+  border: 0;
+  padding-top: 12px;
+  gap: 18px;
+}
+.light-tabs {
+  gap: 5px;
+}
+.light-tabs > button {
+  border: 0;
+  min-height: 48px;
+  padding: 0 15px;
+  border-radius: 11px;
+  font-size: 12px;
+}
+.light-tabs > button.selected {
+  border-color: transparent;
+  background: #ffffff0a;
+}
+.light-tabs > button:hover {
+  background: #ffffff06;
+}
+.compare-button {
+  font-size: 11px;
+  letter-spacing: 0.035em;
+  padding: 0 15px;
+  background: #ffffff06;
+}
+.compare-button.selected {
+  color: #e8c4bb;
+  background: #b68b8115;
+}
+.compare-settings {
+  border: 0;
+  font-size: 12px;
+  padding-top: 22px;
+}
+.compare-settings button,
+.compare-settings select {
+  border: 0;
+  background: #ffffff07;
+  border-radius: 10px;
+  padding: 10px 13px;
+  font-size: 12px;
+}
+.compare-settings button:hover {
+  background: #ffffff10;
+}
+.compare-settings > span {
+  font-size: 11px;
+}
+.compare-handle {
+  background: #e8dbcaad;
+}
+.compare-handle svg {
+  width: 46px;
+  height: 46px;
+  background: #1b1719da;
+  border-color: #ead6c34a;
+  box-shadow: 0 4px 16px #0004;
+}
+.lighting-note {
+  padding-top: 25px;
+  gap: 32px;
+}
+.lighting-note > .eyebrow {
+  font-size: 11px;
+  color: #c9bcb5;
+}
+.lighting-note p {
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 640px;
+}
+.lighting-note > .light-note-tail {
+  font-size: 10px;
+}
+
+/* The studio is a photographic workspace with a single, quiet control surface. */
+.laboratory {
+  background:
+    radial-gradient(ellipse at 22% 35%, #21191755, transparent 60%), #111113;
+}
+.lab-heading {
+  margin-bottom: 34px;
+  gap: 35px;
+}
+.lab-heading .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  margin-bottom: 18px;
+}
+.lab-heading h2 {
+  font-size: clamp(34px, 4.5vw, 78px);
+  line-height: 1.25;
+  letter-spacing: -0.045em;
+}
+.lab-heading > p {
+  font-size: 14px;
+  max-width: 320px;
+  color: #d3c4ca;
+}
+.lab-heading > p > span {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #b1a2ad;
+  margin-top: 10px;
+}
+.lab-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 32px;
+  background: none;
+  border: 0;
+  align-items: start;
+}
+.lab-settings {
+  grid-column: 2;
+  grid-row: 1;
+  border: 0;
+  padding: 26px 22px 18px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #242026b8, #1b181eb8);
+  box-shadow:
+    inset 0 1px 0 #ffffff09,
+    0 16px 45px #00000012;
+}
+.lab-screen-panel {
+  grid-column: 1;
+  grid-row: 1;
+  display: block;
+  background: none;
+}
+.panel-caption {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.055em;
+  gap: 9px;
+  margin-bottom: 27px;
+  color: #d4c5ce;
+}
+.panel-caption > span:last-child {
+  font-size: 10px;
+  color: #b3a2af;
+}
+.lab-settings .setting-group {
+  margin: 0 0 23px;
+}
+.lab-settings .setting-group legend {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.065em;
+  margin-bottom: 10px;
+  color: #c3b4bf;
+}
+.lab-settings .setting-group legend > span {
+  font-size: 10px;
+  color: #a28e9d;
+  margin-right: 9px;
+}
+.lab-settings .segmented-control {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+  position: relative;
+  isolation: isolate;
+  padding: 4px;
+  background: #08070a42;
+  border-radius: 13px;
+  box-shadow: inset 0 1px 3px #0000001f;
+}
+.segment-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  border-radius: 9px;
+  background: #41363d;
+  box-shadow:
+    inset 0 1px 0 #ffffff10,
+    0 2px 7px #0002;
+  pointer-events: none;
+}
+.lab-settings .segmented-control:not([data-measured]) button.selected {
+  background: #41363d;
+}
+.lab-settings .setting-group button {
+  min-width: 0;
+  min-height: 43px;
+  padding: 8px 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 450;
+  letter-spacing: 0;
+  color: #b9aab6;
+  line-height: 1.45;
+  transition: color 0.14s;
+}
+.lab-settings .setting-group button.selected {
+  color: #fff5ec;
+  font-weight: 550;
+  border: 0;
+  background: transparent;
+}
+.lab-settings .setting-group button:not(.selected):hover {
+  color: #ede0e7;
+  background: #ffffff04;
+}
+.lab-settings .setting-shot .segmented-control {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.lab-settings .segmented-control.segmented-vertical {
+  grid-template-columns: 1fr;
+}
+.lab-settings .setting-composition button {
+  justify-content: flex-start;
+  padding-left: 14px;
+  font-size: 12px;
+  min-height: 41px;
+  white-space: normal;
+}
+.reset-button {
+  min-height: 44px;
+  border: 0;
+  padding: 0 8px;
+  color: #baa7b4;
+  font-size: 11px;
+  width: auto;
+}
+.reset-button:hover {
+  color: #eee1e7;
+  background: #ffffff05;
+}
+.lab-monitor {
+  position: relative;
+  background: none;
+  box-shadow: none;
+}
+.lab-monitor .scene-canvas {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px #0003;
+}
+.monitor-top {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto;
+  height: 66px;
+  padding: 0 18px 10px 24px;
+  border: 0;
+  color: #e1d2ce;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  background: linear-gradient(#09090b85, transparent);
+  border-radius: 18px 18px 0 0;
+}
+.monitor-top .icon-button {
+  width: 36px;
+  height: 36px;
+  background: #09090b66;
+  border-radius: 11px;
+}
+.monitor-top .icon-button:hover {
+  background: #2a2329c9;
+}
+.monitor-bottom {
+  height: auto;
+  min-height: 40px;
+  padding: 12px 3px 4px;
+  border: 0;
+  color: #b4a1ab;
+  font-size: 10px;
+  letter-spacing: 0.035em;
+  gap: 15px;
+  line-height: 1.6;
+}
+.scene-previous {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.environment-picker {
+  border: 0;
+  padding: 24px 0 8px;
+}
+.environment-picker > .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  margin-bottom: 14px;
+  color: #bcaab7;
+}
+.environment-picker > div {
+  gap: 13px;
+}
+.environment-picker button {
+  border: 0;
+  border-radius: 13px;
+  background: transparent;
+  overflow: visible;
+  padding: 0;
+  min-width: 0;
+}
+.environment-picker button img {
+  aspect-ratio: 1.35;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 12px;
+  opacity: 0.7;
+  transition:
+    opacity 0.25s,
+    box-shadow 0.25s;
+}
+.environment-picker button span {
+  font-size: 11px;
+  line-height: 1.6;
+  padding: 10px 2px 0;
+  color: #bdabb8;
+  transition: color 0.2s;
+}
+.environment-picker button.selected {
+  border: 0;
+}
+.environment-picker button.selected img {
+  box-shadow: 0 0 0 2px #be988c7d;
+}
+.environment-picker button.selected span {
+  color: #f4e4dd;
+}
+.environment-picker .environment-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  height: 23px;
+  width: 23px;
+  border-radius: 8px;
+  color: #f6e5dc;
+  background: #171116b3;
+  opacity: 0;
+  transform: scale(0.75);
+  transition:
+    opacity 0.2s,
+    transform 0.25s var(--ease-soft);
+}
+.environment-picker button.selected .environment-check {
+  opacity: 1;
+  transform: scale(1);
+}
+.live-description {
+  border: 0;
+  padding: 24px 3px 0;
+}
+.live-description > .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  color: #ad98a6;
+}
+.live-description h3 {
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  margin-top: 11px;
+  font-weight: 450;
+}
+.live-description p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #baa7b5;
+  margin-top: 12px;
+  max-width: 760px;
+}
+.lab-actions {
+  margin-top: 26px;
+  gap: 16px;
+  align-items: center;
+}
+.lab-actions > div {
+  gap: 10px;
+}
+.lab-actions .primary-button {
+  min-height: 52px;
+  font-size: 11px;
+  padding: 0 23px;
+}
+.lab-actions .secondary-button {
+  min-height: 48px;
+  font-size: 12px;
+  padding: 0 15px;
+}
+.lab-status {
+  font-size: 12px;
+  line-height: 1.7;
+  margin-top: 13px;
+  min-height: 22px;
+}
+.lab-footnote {
+  border: 0;
+  padding-top: 6px;
+  margin-top: 5px;
+  gap: 24px;
+}
+.lab-footnote p {
+  font-size: 11px;
+  line-height: 1.75;
+  color: #ae9ba8;
+  max-width: 650px;
+}
+.secret-note {
+  min-height: 44px;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  padding: 0 10px;
+}
+.secret-note-text {
+  border: 0;
+  border-radius: 12px;
+  background: #ffffff04;
+  padding: 20px 23px;
+  font-size: 14px;
+}
+.poster-mode {
+  display: block;
+  background: none;
+  max-width: 1040px;
+}
+.poster-mode .lab-monitor {
+  border-radius: 20px;
+}
+.poster-copy {
+  padding: 30px 12px 10px;
+}
+.poster-copy > .eyebrow {
+  font-size: 11px;
+}
+.poster-copy h3 {
+  font-size: clamp(26px, 3vw, 46px);
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  margin-top: 18px;
+}
+.poster-copy p {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.poster-copy small {
+  font-size: 11px;
+}
+.poster-parameters {
+  gap: 8px;
+}
+.poster-parameters span {
+  border: 0;
+  border-radius: 7px;
+  background: #ffffff06;
+  padding: 6px 10px;
+  font-size: 11px;
+}
+.share-field {
+  font-size: 12px;
+  gap: 14px;
+}
+.share-field input {
+  background: #201a21;
+  border: 1px solid #58424c66;
+  border-radius: 10px;
+  font-size: 12px;
+  padding: 14px;
+}
+.share-field button {
+  border: 0;
+  background: #ffffff07;
+  border-radius: 10px;
+  padding: 14px;
+}
+.frame-dialog {
+  border: 1px solid #ffffff0c;
+  border-radius: 20px;
+  box-shadow: 0 30px 100px #0009;
+}
+.frame-dialog > p {
+  font-size: 17px;
+  padding: 20px 28px;
+}
+.frame-dialog::backdrop {
+  background: #000d;
+  backdrop-filter: blur(8px);
+}
+
+/* The end of the film breathes, without a rigid credits table. */
+.credits {
+  padding-bottom: 0;
+}
+.credits-statement {
+  padding: 10px 0 48px;
+}
+.credits-statement > p {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  margin-bottom: 30px;
+}
+.credits-content {
+  margin-bottom: 60px;
+}
+.author-photo {
+  border-radius: 42px 16px 16px 16px;
+}
+.author-photo > .eyebrow {
+  font-size: 9px;
+}
+.credit-roll > .eyebrow {
+  font-size: 11px;
+}
+.credit-project-type {
+  font-size: 12px;
+  line-height: 1.7;
+  max-width: 260px;
+}
+.author-credit {
+  margin-top: 30px;
+}
+.author-credit > span {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+.author-credit > strong {
+  max-width: 100%;
+  font-size: clamp(25px, 2.65vw, 38px);
+  line-height: 1.35;
+}
+.author-credit > .credit-group {
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.025em;
+  color: #bcadb7;
+}
+.credit-year {
+  font-size: 14px;
+}
+.credits-pause-button {
+  font-size: 11px;
+  margin-top: 20px;
+  padding-left: 0;
+}
+.credits-final {
+  border: 0;
+  padding-top: 38px;
+  padding-bottom: 70px;
+}
+.credits-final .text-button {
+  font-size: 13px;
+}
+footer {
+  border-top-color: #ffffff08;
+  padding-top: 18px;
+  font-size: 10px;
+  letter-spacing: 0.025em;
+}
+.chapter-menu {
+  background:
+    radial-gradient(ellipse at 85% 0%, #2b1e2266, transparent 65%), #111113;
+}
+.menu-top {
+  border: 0;
+  padding-bottom: 16px;
+}
+.menu-top > .eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.07em;
+}
+.menu-link {
+  border: 0;
+  border-radius: 13px;
+  padding: 15px 16px;
+  margin-left: -16px;
+  width: calc(100% + 32px);
+  letter-spacing: -0.04em;
+  color: #b8a8b2;
+}
+.menu-link:hover {
+  background: #ffffff04;
+}
+.menu-number {
+  font-size: 12px;
+}
+.menu-bottom > p {
+  font-size: 14px;
+}
+.volume-control,
+.volume-control label {
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .hero-kicker {
+    font-size: 9px;
+  }
+  .chapter-strip {
+    gap: 20px;
+  }
+  .chapter-strip strong {
+    font-size: 11px;
+  }
+  .chapter-strip small {
+    font-size: 10px;
+  }
+  .strip-number {
+    font-size: 17px;
+  }
+  .chapter {
+    padding-top: 70px;
+    padding-bottom: 78px;
+  }
+  .framing-workspace {
+    grid-template-columns: minmax(0, 1fr) 220px;
+  }
+  .heading-aside {
+    width: 200px;
+  }
+  .heading-aside > p {
+    font-size: 13px;
+  }
+  .shot-description h3 {
+    font-size: 18px;
+  }
+  .shot-description p {
+    font-size: 12px;
+  }
+  .emotion-stage {
+    gap: 35px;
+  }
+  .emotion-copy p {
+    font-size: 13px;
+  }
+  .emotion-copy blockquote {
+    font-size: 20px;
+  }
+  .light-tabs > button {
+    font-size: 11px;
+    padding: 0 11px;
+  }
+  .compare-button {
+    font-size: 10px;
+    padding: 0 12px;
+  }
+  .lab-workspace {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 24px;
+  }
+  .lab-settings {
+    padding: 22px 16px 16px;
+  }
+  .lab-heading > p {
+    font-size: 13px;
+    max-width: 255px;
+  }
+  .lab-heading > p > span {
+    font-size: 12px;
+  }
+  .lab-settings .setting-group button {
+    font-size: 12px;
+  }
+  .environment-picker > div {
+    gap: 10px;
+  }
+  .environment-picker button span {
+    font-size: 10px;
+  }
+  .lab-actions .secondary-button {
+    font-size: 11px;
+    padding: 0 12px;
+  }
+  .credits {
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 800px) {
+  .brand {
+    font-size: 10px;
+  }
+  .header-chapter {
+    font-size: 11px;
+  }
+  .menu-button {
+    padding: 0 12px;
+  }
+  .prologue {
+    min-height: 880px;
+    padding-top: 150px;
+    padding-bottom: 200px;
+  }
+  .hero-kicker {
+    font-size: 9px;
+  }
+  .hero-description p {
+    font-size: 14px;
+  }
+  .hero-buttons {
+    gap: 12px;
+  }
+  .hero-bottom {
+    margin-top: 38px;
+    gap: 8px;
+  }
+  .scroll-hint {
+    font-size: 9px;
+  }
+  .hero-frame-toggle button {
+    font-size: 9px;
+  }
+  .chapter-strip {
+    height: 160px;
+    gap: 0 25px;
+  }
+  .chapter-strip button {
+    border: 0;
+  }
+  .chapter-strip button:nth-child(-n + 2) {
+    border: 0;
+  }
+  .chapter-strip strong {
+    font-size: 12px;
+  }
+  .chapter-strip small {
+    font-size: 10px;
+  }
+  .chapter {
+    padding-top: 64px;
+    padding-bottom: 70px;
+  }
+  .chapter-label {
+    margin-bottom: 32px;
+    font-size: 10px;
+  }
+  .section-heading {
+    gap: 28px;
+  }
+  .heading-aside {
+    width: 170px;
+  }
+  .heading-aside p {
+    font-size: 12px;
+  }
+  .framing-workspace {
+    grid-template-columns: 1fr;
+  }
+  .shot-description {
+    gap: 0 28px;
+    padding-top: 10px;
+  }
+  .shot-description p {
+    font-size: 13px;
+  }
+  .shot-description dl > div:first-child {
+    padding-top: 0;
+  }
+  .shot-description dd {
+    font-size: 12px;
+  }
+  .shot-tabs > button {
+    font-size: 12px;
+    min-height: 48px;
+  }
+  .emotion-heading {
+    margin-left: 0;
+  }
+  .emotion-visual {
+    aspect-ratio: 16/10;
+    border-radius: 18px 36px 18px 18px;
+  }
+  .emotion-copy {
+    gap: 0 25px;
+  }
+  .emotion-copy h3 {
+    margin-top: 14px;
+    font-size: 28px;
+  }
+  .emotion-copy p {
+    font-size: 13px;
+  }
+  .emotion-copy blockquote {
+    font-size: 20px;
+  }
+  .emotion-index {
+    font-size: 32px;
+  }
+  .emotion-selector > button {
+    font-size: 12px;
+    gap: 9px;
+    padding: 0 10px;
+  }
+  .lighting-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .light-tabs {
+    justify-content: space-between;
+    gap: 4px;
+  }
+  .light-tabs > button {
+    font-size: 12px;
+    padding: 0 12px;
+  }
+  .compare-button {
+    align-self: flex-end;
+    min-height: 44px;
+    font-size: 11px;
+  }
+  .lighting-note p {
+    font-size: 13px;
+  }
+  .lab-heading {
+    margin-bottom: 30px;
+    gap: 25px;
+  }
+  .lab-heading > p {
+    font-size: 13px;
+  }
+  .lab-workspace {
+    display: flex;
+    gap: 0;
+    flex-direction: column;
+  }
+  .lab-screen-panel {
+    display: contents;
+  }
+  .lab-monitor {
+    order: 0;
+    position: sticky;
+    top: 78px;
+    width: 100%;
+    z-index: 10;
+    background: #111113;
+    border-radius: 18px;
+    padding-bottom: 2px;
+  }
+  .lab-monitor .scene-canvas {
+    box-shadow: 0 7px 24px #0003;
+  }
+  .monitor-top {
+    padding-left: 20px;
+    font-size: 10px;
+  }
+  .monitor-bottom {
+    font-size: 10px;
+    padding: 9px 5px 7px;
+    min-height: 34px;
+  }
+  .environment-picker {
+    order: 1;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 24px;
+  }
+  .environment-picker button span {
+    font-size: 12px;
+  }
+  .lab-settings {
+    order: 2;
+    width: 100%;
+    border: 0;
+    padding: 25px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .panel-caption {
+    grid-column: 1/-1;
+    margin: 0;
+    font-size: 11px;
+  }
+  .lab-settings .setting-group {
+    margin: 0;
+  }
+  .lab-settings .setting-group legend {
+    font-size: 11px;
+  }
+  .lab-settings .setting-group button {
+    font-size: 13px;
+    min-height: 44px;
+  }
+  .lab-settings .setting-composition {
+    grid-column: 1/-1;
+  }
+  .lab-settings .setting-composition .segmented-control {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .lab-settings .setting-composition button {
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+  .reset-button {
+    grid-column: 1/-1;
+    font-size: 12px;
+    justify-self: start;
+  }
+  .live-description {
+    order: 3;
+    padding: 25px 3px 0;
+  }
+  .live-description p {
+    font-size: 13px;
+  }
+  .lab-actions {
+    margin-top: 25px;
+  }
+  .lab-actions .primary-button {
+    min-height: 52px;
+    font-size: 12px;
+  }
+  .lab-actions .secondary-button {
+    font-size: 13px;
+  }
+  .lab-footnote p {
+    font-size: 11px;
+  }
+  .poster-mode {
+    display: block;
+  }
+  .poster-mode .lab-screen-panel {
+    display: block;
+  }
+  .poster-mode .lab-monitor {
+    position: relative;
+    top: 0;
+  }
+  .credits {
+    padding-bottom: 0;
+  }
+  footer {
+    font-size: 9px;
+  }
+  .menu-link {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .menu-bottom > p {
+    font-size: 13px;
+  }
+}
+@media (max-width: 540px) {
+  :root {
+    --radius-control: 11px;
+    --radius-scene: 15px;
+  }
+  .brand {
+    font-size: 9px;
+    gap: 9px;
+  }
+  .header-chapter {
+    font-size: 11px;
+  }
+  .menu-button {
+    background: transparent;
+    padding: 0 7px;
+  }
+  .header-actions {
+    gap: 2px;
+  }
+  .prologue {
+    min-height: max(930px, 100svh);
+    padding-top: 128px;
+    padding-bottom: 215px;
+  }
+  .hero-kicker {
+    font-size: 9px;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    margin-bottom: 27px;
+    gap: 8px;
+  }
+  .prologue h1 {
+    font-size: clamp(23px, 5.65vw, 31px);
+    letter-spacing: -0.042em;
+    line-height: 1.42;
+  }
+  .hero-last {
+    font-size: 1.24em;
+    line-height: 1.45;
+  }
+  .hero-description {
+    margin-top: 25px;
+    gap: 12px;
+  }
+  .hero-description p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .hero-buttons {
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .hero-buttons > .primary-button {
+    min-height: 52px;
+    width: 240px;
+    font-size: 11px;
+    padding: 0 20px;
+  }
+  .skip-intro {
+    font-size: 12px;
+    padding-left: 0;
+  }
+  .hero-bottom {
+    margin-top: 35px;
+  }
+  .scroll-hint {
+    font-size: 9px;
+    letter-spacing: 0.025em;
+    gap: 9px;
+  }
+  .hero-frame-toggle {
+    gap: 3px;
+  }
+  .hero-frame-toggle button {
+    font-size: 9px;
+    letter-spacing: 0.015em;
+    padding: 0 8px;
+  }
+  .hero-visual,
+  .hero-shade {
+    bottom: 190px;
+  }
+  .chapter-strip {
+    height: 185px;
+    column-gap: 19px;
+  }
+  .chapter-strip button {
+    gap: 9px;
+    padding: 9px 0;
+  }
+  .chapter-strip strong {
+    max-width: 135px;
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .chapter-strip small {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .chapter-strip .strip-number {
+    font-size: 15px;
+  }
+  .chapter-strip button > svg {
+    width: 12px;
+  }
+  .chapter {
+    padding-top: 53px;
+    padding-bottom: 60px;
+  }
+  .chapter-label {
+    font-size: 10px;
+    line-height: 1.7;
+    gap: 9px;
+    margin-bottom: 28px;
+    letter-spacing: 0.035em;
+  }
+  .chapter-label .red-tick {
+    width: 5px;
+    height: 5px;
+  }
+  .label-rule {
+    display: none;
+  }
+  h2 {
+    font-size: clamp(20px, 5.05vw, 28px);
+    letter-spacing: -0.037em;
+    line-height: 1.4;
+  }
+  .section-heading {
+    gap: 22px;
+    margin-bottom: 26px;
+  }
+  .heading-aside {
+    gap: 15px;
+  }
+  .heading-aside > p {
+    font-size: 13px;
+    line-height: 1.75;
+    max-width: 300px;
+  }
+  .heading-aside > svg {
+    width: 21px;
+  }
+  .finder-corners {
+    inset: 13px;
+  }
+  .finder-top {
+    top: 19px;
+    left: 22px;
+    right: 22px;
+    font-size: 9px;
+    letter-spacing: 0.03em;
+  }
+  .finder-bottom {
+    bottom: 10px;
+    left: 20px;
+    right: 20px;
+    font-size: 8px;
+    letter-spacing: 0.02em;
+  }
+  .finder-bottom .icon-button {
+    width: 32px;
+    height: 32px;
+  }
+  .finder-bottom .icon-button > svg {
+    width: 16px;
+  }
+  .shot-tabs {
+    padding-top: 10px;
+    gap: 3px;
+  }
+  .shot-tabs > button {
+    font-size: 10px;
+    line-height: 1.55;
+    min-height: 58px;
+    padding: 7px 5px;
+    gap: 4px;
+  }
+  .shot-tabs > button > span:first-child {
+    font-size: 9px;
+  }
+  .shot-description {
+    padding-top: 6px;
+    margin-top: 17px;
+  }
+  .shot-description > .eyebrow {
+    font-size: 10px;
+  }
+  .shot-description h3 {
+    font-size: 21px;
+    letter-spacing: -0.025em;
+    line-height: 1.5;
+    margin: 12px 0;
+  }
+  .shot-description p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .shot-description dl {
+    margin-top: 16px;
+    gap: 19px;
+  }
+  .shot-description dl > div {
+    border: 0 !important;
+    padding-top: 9px !important;
+  }
+  .shot-description dt {
+    font-size: 9px;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+  }
+  .shot-description dd {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .section-footnote {
+    font-size: 11px;
+    line-height: 1.75;
+    margin-top: 18px;
+  }
+  .emotion-heading {
+    margin-bottom: 27px;
+  }
+  .emotion-heading > .eyebrow {
+    font-size: 9px;
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+  .emotion-visual {
+    aspect-ratio: 1.25;
+    border-radius: 15px 28px 15px 15px;
+  }
+  .emotion-photo-label {
+    font-size: 9px;
+    left: 16px;
+    bottom: 17px;
+    letter-spacing: 0.025em;
+  }
+  .emotion-stage {
+    gap: 24px;
+  }
+  .emotion-copy h3 {
+    font-size: 25px;
+    margin-top: 0;
+    letter-spacing: -0.035em;
+  }
+  .emotion-index {
+    font-size: 25px;
+  }
+  .emotion-index > span {
+    font-size: 10px;
+  }
+  .emotion-copy blockquote {
+    font-size: 20px;
+    line-height: 1.65;
+    max-width: 100%;
+    margin-top: 18px;
+  }
+  .emotion-copy p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 19px;
+  }
+  .technique {
+    margin-top: 16px;
+    padding-top: 0;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .emotion-selector {
+    margin-top: 26px;
+    gap: 4px;
+  }
+  .emotion-selector > button {
+    font-size: 10px;
+    min-height: 66px;
+    padding: 8px 4px;
+    gap: 6px;
+  }
+  .emotion-selector > button > span {
+    font-size: 9px;
+  }
+  .lighting-view {
+    border-radius: 16px;
+  }
+  .lighting .heading-aside > p {
+    font-size: 13px;
+  }
+  .light-label {
+    font-size: 10px;
+    top: 16px;
+  }
+  .light-label-left {
+    left: 15px;
+  }
+  .light-label-right {
+    right: 15px;
+  }
+  .light-label small {
+    font-size: 9px;
+  }
+  .lighting-controls {
+    padding-top: 12px;
+    gap: 8px;
+  }
+  .light-tabs {
+    gap: 5px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .light-tabs > button {
+    font-size: 12px;
+    min-height: 46px;
+    padding: 0 12px;
+  }
+  .compare-button {
+    min-height: 44px;
+    font-size: 10px;
+    padding: 0 13px;
+  }
+  .lighting-note {
+    padding-top: 23px;
+    gap: 12px;
+  }
+  .lighting-note > .eyebrow {
+    font-size: 11px;
+  }
+  .lighting-note p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .compare-settings {
+    font-size: 11px;
+    gap: 8px;
+  }
+  .compare-settings select {
+    font-size: 12px;
+    max-width: 190px;
+  }
+  .compare-settings button {
+    font-size: 11px;
+    min-height: 44px;
+    padding: 9px;
+  }
+  .compare-settings > span {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+  .lab-heading {
+    gap: 19px;
+    margin-bottom: 27px;
+  }
+  .lab-heading .eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.04em;
+    margin-bottom: 15px;
+  }
+  .lab-heading h2 {
+    font-size: clamp(28px, 6.9vw, 38px);
+    letter-spacing: -0.05em;
+    line-height: 1.3;
+  }
+  .lab-heading > p {
+    font-size: 14px;
+    max-width: none;
+  }
+  .lab-heading > p > span {
+    font-size: 13px;
+    line-height: 1.65;
+    margin-top: 8px;
+  }
+  .lab-monitor {
+    top: 72px;
+    border-radius: 15px;
+  }
+  .lab-monitor .scene-canvas {
+    border-radius: 15px;
+  }
+  .monitor-top {
+    height: 48px;
+    padding: 0 10px 4px 15px;
+    font-size: 9px;
+    letter-spacing: 0.02em;
+    border-radius: 15px 15px 0 0;
+  }
+  .monitor-top .icon-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+  }
+  .monitor-top .icon-button > svg {
+    width: 15px;
+  }
+  .monitor-bottom {
+    font-size: 9px;
+    min-height: 35px;
+    padding: 9px 3px 7px;
+    gap: 10px;
+  }
+  .environment-picker {
+    padding: 17px 0 23px;
+  }
+  .environment-picker > .eyebrow {
+    font-size: 10px;
+    margin-bottom: 11px;
+  }
+  .environment-picker > div {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-columns: 33%;
+    grid-auto-flow: column;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #69515e55 transparent;
+    scroll-snap-type: x proximity;
+    gap: 12px;
+    padding: 3px 2px 10px;
+  }
+  .environment-picker button {
+    min-height: 0;
+    scroll-snap-align: start;
+  }
+  .environment-picker button img {
+    aspect-ratio: 1.2;
+    border-radius: 11px;
+  }
+  .environment-picker button span {
+    font-size: 11px;
+    padding: 9px 1px 0;
+  }
+  .environment-picker .environment-check {
+    top: 6px;
+    right: 6px;
+    height: 21px;
+    width: 21px;
+    border-radius: 7px;
+  }
+  .lab-settings {
+    padding: 21px 15px 14px;
+    grid-template-columns: 1fr;
+    gap: 23px;
+    border-radius: 18px;
+  }
+  .panel-caption {
+    font-size: 10px;
+    gap: 8px;
+  }
+  .panel-caption > span:last-child {
+    font-size: 10px;
+  }
+  .lab-settings .setting-group legend {
+    font-size: 11px;
+    letter-spacing: 0.035em;
+  }
+  .lab-settings .setting-group button {
+    font-size: 13px;
+    min-height: 45px;
+    padding: 9px;
+  }
+  .lab-settings .setting-composition .segmented-control {
+    grid-template-columns: 1fr;
+  }
+  .lab-settings .setting-composition button {
+    text-align: left;
+    justify-content: flex-start;
+    padding-left: 15px;
+    font-size: 13px;
+  }
+  .reset-button {
+    font-size: 12px;
+    min-height: 44px;
+  }
+  .live-description {
+    padding: 23px 3px 0;
+  }
+  .live-description > .eyebrow {
+    font-size: 10px;
+  }
+  .live-description h3 {
+    font-size: 23px;
+    line-height: 1.5;
+    margin-top: 11px;
+  }
+  .live-description p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .lab-actions {
+    margin-top: 22px;
+    gap: 10px;
+  }
+  .lab-actions > div {
+    gap: 8px;
+  }
+  .lab-actions .primary-button {
+    min-height: 52px;
+    font-size: 12px;
+  }
+  .lab-actions .secondary-button {
+    min-height: 48px;
+    font-size: 12px;
+    padding: 0 10px;
+  }
+  .lab-status {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .lab-footnote {
+    padding-top: 2px;
+    margin-top: 2px;
+    gap: 6px;
+  }
+  .lab-footnote p {
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .secret-note {
+    font-size: 10px;
+    padding-left: 0;
+  }
+  .poster-copy {
+    padding: 24px 3px 3px;
+  }
+  .poster-copy h3 {
+    font-size: 25px;
+    letter-spacing: -0.03em;
+    margin: 14px 0 20px;
+  }
+  .poster-copy p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .poster-copy small {
+    font-size: 11px;
+    line-height: 1.75;
+  }
+  .poster-copy .text-button {
+    font-size: 12px;
+  }
+  .poster-parameters span {
+    font-size: 11px;
+    padding: 6px 9px;
+  }
+  .share-field label,
+  .share-field input,
+  .share-field button {
+    font-size: 12px;
+  }
+  .credits {
+    padding-bottom: 0;
+  }
+  .credits-statement {
+    padding: 6px 0 34px;
+  }
+  .credits-statement > p {
+    font-size: 10px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+    margin-bottom: 25px;
+  }
+  .credits-statement h2 {
+    font-size: clamp(22px, 5.3vw, 29px);
+    letter-spacing: -0.04em;
+  }
+  .credits-content {
+    gap: 27px;
+    margin-bottom: 35px;
+  }
+  .author-photo {
+    border-radius: 28px 14px 14px 14px;
+  }
+  .author-photo > .eyebrow {
+    font-size: 9px;
+  }
+  .credit-roll > .eyebrow {
+    font-size: 10px;
+  }
+  .credit-project-type {
+    font-size: 12px;
+    line-height: 1.7;
+    max-width: 260px;
+  }
+  .author-credit > span {
+    font-size: 10px;
+  }
+  .author-credit > strong {
+    font-size: clamp(23px, 6.6vw, 30px);
+    letter-spacing: -0.03em;
+  }
+  .credit-year {
+    font-size: 14px;
+  }
+  .credits-pause-button {
+    font-size: 11px;
+    margin-top: 14px;
+  }
+  .credits-final {
+    padding: 28px 0 43px;
+  }
+  .credits-final > p {
+    font-size: clamp(16px, 3.8vw, 21px);
+    letter-spacing: -0.03em;
+  }
+  .credits-final .primary-button {
+    font-size: 11px;
+    gap: 15px;
+    min-height: 52px;
+  }
+  .credits-final .text-button {
+    font-size: 12px;
+  }
+  footer {
+    font-size: 9px;
+    letter-spacing: 0;
+    line-height: 1.8;
+  }
+  .menu-top > .eyebrow {
+    font-size: 10px;
+  }
+  .menu-link {
+    font-size: clamp(15px, 4vw, 22px);
+    padding: 18px 10px;
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    gap: 10px;
+  }
+  .menu-number {
+    font-size: 11px;
+  }
+  .menu-bottom > p {
+    font-size: 13px;
+  }
+  .volume-control {
+    font-size: 12px;
+    gap: 15px;
+  }
+  .volume-control label {
+    font-size: 11px;
+  }
+  .frame-dialog {
+    border-radius: 15px;
+  }
+  .frame-dialog > p {
+    font-size: 15px;
+    padding: 18px 20px;
+  }
+}
+@media (max-width: 360px) {
+  .brand {
+    font-size: 8px;
+  }
+  .header-chapter {
+    font-size: 10px;
+  }
+  .prologue h1 {
+    font-size: 23px;
+  }
+  .hero-kicker {
+    font-size: 8px;
+  }
+  .hero-description p {
+    font-size: 12px;
+  }
+  .hero-buttons > .primary-button {
+    width: 225px;
+  }
+  .chapter-strip {
+    column-gap: 14px;
+  }
+  .chapter-strip strong {
+    font-size: 10px;
+  }
+  .chapter-strip small {
+    font-size: 9px;
+  }
+  .chapter-strip .strip-number {
+    font-size: 13px;
+  }
+  .chapter-label {
+    font-size: 9px;
+  }
+  .emotion-copy h3 {
+    font-size: 23px;
+  }
+  .emotion-selector > button {
+    font-size: 9px;
+  }
+  .shot-tabs > button {
+    font-size: 9px;
+  }
+  .finder-bottom {
+    font-size: 7px;
+  }
+  .lab-heading h2 {
+    font-size: 27px;
+  }
+  .monitor-top {
+    font-size: 8px;
+  }
+  .monitor-bottom {
+    font-size: 8px;
+  }
+  .lab-settings {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .lab-settings .setting-group button {
+    font-size: 12px;
+  }
+  .environment-picker button span {
+    font-size: 10px;
+  }
+  .light-tabs > button {
+    font-size: 11px;
+    padding: 0 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  button {
+    scale: 1 !important;
+  }
+  .segment-indicator {
+    transition: none;
+  }
+  .scene-previous {
+    opacity: 0 !important;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .site-header {
+    backdrop-filter: none;
+    background: #111113;
+  }
+  .lab-settings {
+    background: #211c23;
+  }
+  .frame-dialog::backdrop {
+    backdrop-filter: none;
+  }
+}
+@media (prefers-contrast: more) {
+  .lab-settings {
+    background: #1a161c;
+    box-shadow: 0 0 0 1px #b5a1af;
+  }
+  .segment-indicator {
+    background: #5d4957;
+    box-shadow: inset 0 0 0 1px #bba6b4;
+  }
+  .secondary-button {
+    border-color: #a895a1;
+  }
+  .site-header {
+    background: #09090b;
+    backdrop-filter: none;
+  }
+}

@@ -1,0 +1,33 @@
+node_modules/
+dist/
+.asset-sources/
+test-results/
+playwright-report/
+.env*
+!.env.example
+.DS_Store
+*.local
+
+# Private source material and local working files (never part of the website).
+.private/
+private/
+original-photos/
+reference-photos/
+attachments/
+.codex/
+Изображение ChatGPT*
+*.pem
+*.key
+*.p12
+*.pfx
+*.log
+coverage/
+.cache/
+tmp/
+
+# Local QA captures are not needed in the public source repository.
+/docs/screenshots/
+/docs/redesign/
+/docs/QA.md
+/docs/lighthouse-*.report.*
+/vercel.json

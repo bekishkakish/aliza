@@ -10,7 +10,8 @@ export default defineConfig({
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
     baseURL,
-    channel: process.env.PLAYWRIGHT_CHANNEL || "msedge",
+    browserName: process.env.PLAYWRIGHT_BROWSER === "webkit" ? "webkit" : "chromium",
+    channel: process.env.PLAYWRIGHT_BROWSER === "webkit" ? undefined : process.env.PLAYWRIGHT_CHANNEL || "msedge",
     viewport: { width: 1440, height: 960 },
     reducedMotion: "reduce",
     screenshot: "only-on-failure",

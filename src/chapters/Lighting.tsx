@@ -50,13 +50,20 @@ export default function Lighting() {
           <span className="muted-heading">ОН РАССКАЗЫВАЕТ.</span>
         </h2>
         <div className="heading-aside">
-          <span className="sun-symbol" aria-hidden="true">
-            ✳
-          </span>
+          <svg
+            className="sun-symbol"
+            viewBox="0 0 64 64"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <path d="M32 4v56M4 32h56M13 13l38 38M13 51l38-38" />
+            <circle cx="32" cy="32" r="4" />
+          </svg>
           <p>
-            Одна комната. Одно окно.
-            <br />
-            Четыре разных истории.
+            Одна комната. Одно окно. Четыре разных истории.
           </p>
         </div>
       </div>
@@ -86,9 +93,13 @@ export default function Lighting() {
               className="compare-handle"
               style={{ left: `${position}%` }}
               aria-hidden="true"
-            >
-              <ChevronsLeftRight size={21} />
-            </div>
+            />
+            <ChevronsLeftRight
+              className="compare-knob"
+              size={21}
+              style={{ left: `clamp(24px, ${position}%, calc(100% - 24px))` }}
+              aria-hidden="true"
+            />
             <input
               className="compare-range"
               aria-label="Положение разделителя сравнения света"

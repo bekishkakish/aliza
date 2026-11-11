@@ -438,6 +438,8 @@ p {
   gap: 8px;
 }
 .emotion-selector > button {
+  min-width: 0;
+  flex-wrap: wrap;
   min-height: 58px;
   padding: 0 15px;
   border: 0;
@@ -523,7 +525,7 @@ p {
 .compare-handle {
   background: #e8dbcaad;
 }
-.compare-handle svg {
+.compare-knob {
   width: 46px;
   height: 46px;
   background: #1b1719da;
@@ -1050,9 +1052,8 @@ footer {
 .menu-link {
   border: 0;
   border-radius: 13px;
-  padding: 15px 16px;
-  margin-left: -16px;
-  width: calc(100% + 32px);
+  padding: 15px 0;
+  width: 100%;
   letter-spacing: -0.04em;
   color: #b8a8b2;
 }
@@ -2043,9 +2044,7 @@ footer {
   }
   .menu-link {
     font-size: clamp(15px, 4vw, 22px);
-    padding: 18px 10px;
-    width: calc(100% + 20px);
-    margin-left: -10px;
+    padding: 18px 0;
     gap: 10px;
   }
   .menu-number {
@@ -2139,6 +2138,110 @@ footer {
     padding: 0 10px;
   }
 }
+/* A phone has its own composition; heading asides must never reserve a
+   desktop-width column or force the title beyond the available inline size. */
+@media (max-width: 767px) {
+  .section-heading,
+  .lab-heading {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 22px;
+  }
+  .section-heading h2,
+  .emotion-heading h2 {
+    max-width: 100%;
+    font-size: clamp(1.25rem, 5.05vw, 2.125rem);
+    line-height: 1.4;
+    letter-spacing: -0.037em;
+    overflow-wrap: anywhere;
+  }
+  .heading-aside,
+  .lighting .heading-aside {
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    align-items: start;
+    gap: 18px;
+    padding-bottom: 0;
+  }
+  .heading-aside > p,
+  .lighting .heading-aside > p {
+    max-width: 32ch;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .heading-aside > .eyebrow {
+    display: none;
+  }
+  .lighting .heading-aside {
+    grid-template-columns: 36px minmax(0, 1fr);
+    align-items: center;
+  }
+  .lighting .heading-aside > .sun-symbol {
+    width: 36px;
+    height: 36px;
+  }
+  .lab-heading > p {
+    max-width: 42ch;
+  }
+  .chapter-label > span:nth-child(2) {
+    white-space: normal;
+  }
+  .emotion-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .emotion-selector > button {
+    flex: 1 1 calc((100% - 16px) / 3);
+    min-width: 0;
+    min-height: 60px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 9px 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    gap: 4px;
+  }
+  .light-tabs > button {
+    min-width: 0;
+    white-space: normal;
+    text-align: left;
+  }
+  .light-swatch {
+    flex-shrink: 0;
+  }
+  .lighting-note > .eyebrow {
+    min-width: 0;
+  }
+  .monitor-top > span,
+  .monitor-bottom > span {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .monitor-bottom > span:last-child {
+    text-align: right;
+  }
+  .monitor-top .icon-button {
+    width: 44px;
+    height: 44px;
+  }
+  .poster-copy h3,
+  .live-description h3 {
+    overflow-wrap: anywhere;
+  }
+  .poster-copy .text-button {
+    text-align: left;
+  }
+  .compare-settings select,
+  .share-field input {
+    font-size: 16px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   button {
     scale: 1 !important;

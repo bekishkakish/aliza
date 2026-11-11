@@ -26,6 +26,14 @@ for (const width of widths) {
       for (const id of chapters) {
         const section = page.locator(`#${id}`);
         await section.evaluate(e => e.scrollIntoView({ behavior: "instant" }));
+        await section.locator("img").evaluateAll(images => Promise.all(images.map(image => {
+          image.loading = "eager";
+          return image.decode();
+        })));
+        for (const canvas of await section.locator(".scene-canvas:visible").all()) {
+          await expect(canvas).toHaveAttribute("data-ready", "true");
+          await expect(canvas).toHaveAttribute("aria-busy", "false");
+        }
         await expectHorizontalFit(section);
         await expectHorizontalFit(page.locator(".site-header"));
         await page.screenshot({ path: info.outputPath(`${width}-${id}.png`) });

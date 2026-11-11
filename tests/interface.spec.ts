@@ -64,10 +64,10 @@ test("buttons respond on pointer-down, and rapid scene changes finish on the cur
   await page.goto("./?scene=1#laboratory");
   const light = page.locator(".setting-light");
   const red = light.getByRole("button", { name: "Красное", exact: true });
-  await red.scrollIntoViewIfNeeded();
-  const box = await red.boundingBox();
-  if (!box) throw new Error("Button missing");
-  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  // Remote font loading can move a previously measured button. Use Playwright's
+  // stable, hit-tested hover before sending the real pointer-down event.
+  await page.evaluate(() => document.fonts.ready);
+  await red.hover();
   await page.mouse.down();
   await expect(red).toHaveClass(/is-pressing/);
   await expect
